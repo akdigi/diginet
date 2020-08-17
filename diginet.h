@@ -1,8 +1,8 @@
 /*
- * app_commands.h
+ * diginet.h
  *
  *  Created on: 10-Jan-2020
- *      Author: adee9
+ *      Author: adeesh
  */
 
 #ifndef APP_COMMANDS_H_
@@ -77,7 +77,10 @@ typedef enum {
 	PAIRING_STOP 					= 0x33,
 	GOTO_OTA							= 0x3E,
 	TIME_SYNC 						= 0x40,
+	RESET_CAUSE						= 0x50,
+	SHID_UNASSIGNED					= 0x55,
 	ENV_POLL 							= 0x71,
+	SHID_ASSIGNED					= 0xAA,
 	COMMISSIONED						= 0xC0,
 	STOP_TXN 							= 0xC1,
 	SYSTEM_RESET 					= 0xC2,
@@ -92,6 +95,7 @@ typedef enum {
 	SENSOR_MODE 						= 0xD9,
 	CRONTAB							= 0xDA,
 	CONFIG_ENABLE					= 0xDB,
+	SHID_REQUEST					= 0xDC,
 	SHID_ASSIGNEMT 					= 0xE0,
 	ULTRA_SOUND_CONFIGPARAMS		= 0xF0,
 	ULTRA_SOUND_TEST_EN 			= 0xF1,
