@@ -1,0 +1,3 @@
+[submodule "diginet"]
+	path = diginet
+	url = git@github.com:akdigi/diginet.git
