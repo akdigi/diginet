@@ -40,6 +40,7 @@ typedef enum {
 	FT_NACK,
 	FT_SWITCH_CMD,
 	FT_EVENT,
+	FT_DBG_CHAN = 62,
 	FT_CUSTOM_CMD = 63
 } Frame_Type_t;
 
@@ -103,8 +104,7 @@ typedef enum {
 	US_REG_WRITE		 				= 0xF3,
 	PGA_REG_READ						= 0xF4,
 	US_DIS_MEAS_CONSTRAINT		= 0xF5,
-	CMD_ACK							= 0xF6,
-	PROV_MODE_ENABLE				= 0xFE
+	CMD_ACK							= 0xF6
 } Data_Cmd_t;
 
 typedef enum
@@ -137,8 +137,6 @@ typedef struct {
 	uint16_t HeaderCRC;
 	uint8_t PacketData[64]; // Byte 0 is data length and last 2 bytes are CRC
 } __attribute__((__packed__)) RS485_Frame_t;
-
-
 
 typedef enum {
 	UNOCCUPIED	= 0x00,
@@ -201,23 +199,28 @@ typedef struct {
 	uint16_t 		configVersion;
 	uint16_t 		firmwareVersion;
 	uint8_t 		paired_router;
-}__attribute__((__packed__)) Sensor_Cfg_Min_t;
+}__attribute__((__packed__)) device_cfg_min_t;
 
-typedef struct sensor_db_t {
+typedef struct {
 	uint8_t			ext_id[12];
-	uint16_t			mesh_short_id;
+	uint16_t		mesh_short_id;
 	uint8_t			master_short_id;
-	uint8_t			cfg[sizeof(Sensor_Cfg_Min_t)];
-	uint32_t			num_packets_rx;
+	uint8_t			cfg[sizeof(device_cfg_min_t)];
+	uint32_t		num_packets_rx;
 	uint8_t			rssi;
 	uint8_t			seq_no;
-}__attribute__((__packed__)) sensor_db_t;
+}__attribute__((__packed__)) device_db_t;
 
 typedef struct pairing_resp_t {
-	Frame_Type_t 			ftype;
+	Frame_Type_t 		ftype;
 	Data_Cmd_t			cmd_id;
-	uint32_t				UTC;
+	uint32_t			UTC;
 } __attribute__((__packed__)) pairing_resp_t;
+
+typedef struct {
+	uint8_t			acked_cmd;
+	uint32_t		error_code;
+} __attribute__((packed__)) ack_pkt_t;
 
 
 //CMD_IAM len is 0x29 for als_calibration and us retransmission timeout
