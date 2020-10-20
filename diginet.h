@@ -126,8 +126,8 @@ typedef enum
 #define PREAMBLEL		0x56
 #define MAX_PACKET_LENGTH	64
 #define CRCLENGTH				0x02
-#define RS485_HEADER_LEN			5
-#define HEADER_SIZE			7
+#define RS485_HEADER_LEN			7
+#define HEADER_SIZE			9
 
 typedef struct {
 	uint16_t preamble;
