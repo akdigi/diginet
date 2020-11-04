@@ -39,7 +39,7 @@ typedef enum {
 	FT_ACK,
 	FT_NACK,
 	FT_SWITCH_CMD,
-	FT_EVENT,
+	FT_DATA_STREAM,
 	FT_DBG_CHAN = 62,
 	FT_CUSTOM_CMD = 63
 } Frame_Type_t;
@@ -76,6 +76,8 @@ typedef enum {
 	PAIRING_ACCPT 					= 0x31,
 	PAIRING_CMPLT 					= 0x32,
 	PAIRING_STOP 					= 0x33,
+	START_APP_OTA 						= 0x3A,
+	STOP_APP_OTA						= 0x3B,
 	GOTO_OTA							= 0x3E,
 	TIME_SYNC 						= 0x40,
 	RESET_CAUSE						= 0x50,
@@ -131,9 +133,9 @@ typedef enum
 
 typedef struct {
 	uint16_t preamble;
-	Frame_Type_t frameType;
-	uint8_t sourceAddress;
-	uint8_t destinationAddress;
+	uint8_t frameType;
+	uint16_t sourceAddress;
+	uint16_t destinationAddress;
 	uint16_t HeaderCRC;
 	uint8_t PacketData[64]; // Byte 0 is data length and last 2 bytes are CRC
 } __attribute__((__packed__)) RS485_Frame_t;
