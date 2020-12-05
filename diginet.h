@@ -106,7 +106,8 @@ typedef enum {
 	US_REG_WRITE		 				= 0xF3,
 	PGA_REG_READ						= 0xF4,
 	US_DIS_MEAS_CONSTRAINT		= 0xF5,
-	CMD_ACK							= 0xF6
+	CMD_ACK							= 0xF6,
+	CMD_DATA_STREAM					= 0xF7
 } Data_Cmd_t;
 
 typedef enum
@@ -137,7 +138,7 @@ typedef struct {
 	uint16_t sourceAddress;
 	uint16_t destinationAddress;
 	uint16_t HeaderCRC;
-	uint8_t PacketData[64]; // Byte 0 is data length and last 2 bytes are CRC
+	uint8_t PacketData[300]; // Byte 0 is data length and last 2 bytes are CRC
 } __attribute__((__packed__)) RS485_Frame_t;
 
 typedef enum {
